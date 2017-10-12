@@ -184,4 +184,52 @@ train_nnet <- function(X, Y, learning_rate = 0.5, reg = 0.001, nodes = c(10), ep
   
   return(list(Weights,Baises,W_out,b_out))
 }#End Function
+
+
+
+
+nnetPred2 <- function(X,para=list(),hidden_layers = 2)
+{
+  in_nodes <- ncol(X) #Number of nodes in input layer
+  #classes <- ncol(Y) #number of classes for classification
+  nsamples <- nrow(X)
+  #hidden_layers = length(nodes)
   
+  #Define output layer
+  Weights <- para[[1]]
+  Baises <- para[[2]]
+  W_out <- para[[3]]
+  b_out <- para[[4]]
+  activations <- list()
+  layer_outputs <- list()
+  
+  for (j in 1:hidden_layers)
+  {
+    #ReLU Activation function
+    
+    #print(matrix(rep(Baises[,c(i+1)],nsamples), nrow = nsamples, byrow = T))
+    if( j == 1)
+    {
+      activations[[j]] <- pmax(0, X%*% Weights[[j]] + matrix(rep(Baises[[j]],nsamples), nrow = nsamples, byrow = T)) 
+      layer_outputs[[j]] <- matrix(activations[[j]], nrow = nsamples)
+    }
+    else
+    {
+      activations[[j]] <- pmax(0, layer_outputs[[j-1]] %*% Weights[[j]] + matrix(rep(Baises[[j]],nsamples), nrow = nsamples, byrow = T)) 
+      layer_outputs[[j]] <- matrix(activations[[j]], nrow = nsamples)
+    }
+    
+    
+  }#end layer calcs loop
+  
+  #compute output layer
+  
+  # calc output layer ==>  scores
+  scores <- layer_outputs[[hidden_layers]]%*%W_out + matrix(rep(b_out,nsamples), nrow = nsamples, byrow = T)
+  
+  # compute and normalize class probabilities
+  exp_scores <- exp(scores)
+  probs <- exp_scores / rowSums(exp_scores)
+  predicted_class <- apply(scores, 1, which.max)
+  return(predicted_class)
+}
