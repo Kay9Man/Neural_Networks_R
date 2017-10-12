@@ -14,6 +14,6 @@ Current Implementations:
       - Variable hidden layers and nodes (Currently does not support 0 hidden layers, being fixed)
       - L2 regularization implemented
       - Variable Iterations (epochs) (No threshold setting for Loss function to end training interation)
-      
+      - Re-implementation of https://www.kaggle.com/russwill/build-your-own-neural-network-in-r ( this implementation uses hard coded hidden layer)
       
   
