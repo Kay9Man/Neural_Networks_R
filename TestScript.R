@@ -25,9 +25,11 @@ for (i in 1:(N*K))
  }
 
 source("FF_NN_Train.R")
-
+ #Make changes here !!!!!!!!!!!
  nnet.model <- train_nnet(X1,Y1,learning_rate = 0.3, reg = 0.0001, nodes = c(10,10), epochs = 500)
  
+
+#everything after this point does not need to be changed and simply for plotting the results.
  predicted_class <- nnetPred2(X2, nnet.model,hidden_layers=2)
  print(paste('training accuracy:',mean(predicted_class == (dataTest[,3]))))
  
