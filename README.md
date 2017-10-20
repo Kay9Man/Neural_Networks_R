@@ -8,7 +8,7 @@ From Scratch implementations - Not using predefined libraries, to enhance unders
 
 Current Implementations:
 
- 1. Feed Forward Neural Network (FF_NN_Train.R )
+ 1. Feed Forward Neural Network (Code/FeedForward/FF_NN_Train.R )
       - Using ReLU Activation function
       - Softmax Loss Function
       - Variable hidden layers and nodes (Currently does not support 0 hidden layers, being fixed)
@@ -20,5 +20,5 @@ Current Implementations:
          - qqplot, caret ( both available through CRAN ) for plotting outputs, decision boundaries
          - No libraries needed for running the training/prediction algorithms using the implemented Neural Net
       
-      - Simply Run TestScript.R to use the neural network, it has already been set up to generate a spiral train and test data set of 4 classes, all that needs to be changed is the parameters of the neural network : learning rate, nodes in hidden layers (minimum 1 hidden layer), regularization factor and epochs (training iterations)
+      - Simply Run TestScript.R to use the neural network, it has already been set up to generate a spiral train and test data set of 4 classes, all that needs to be <b> changed </b> is the parameters of the neural network : learning rate, nodes in hidden layers (minimum 1 hidden layer), regularization factor and epochs (training iterations)
       
